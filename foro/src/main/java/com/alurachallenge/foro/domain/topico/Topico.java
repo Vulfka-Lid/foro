@@ -2,6 +2,7 @@ package com.alurachallenge.foro.domain.topico;
 
 import com.alurachallenge.foro.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,14 +31,27 @@ public class Topico {
     private Usuario autor;
     private String curso;
 
-    public Topico(DatosDetalleTopico datos){
-        this.id = null;
+    public Topico(DatosRegistroTopico datos, Usuario autor) {
         this.titulo = datos.titulo();
         this.mensaje = datos.mensaje();
-        this.fecha = LocalDate.now();
+        this.autor = autor;
+        this.curso = datos.nombreCurso();
+        this.fecha = LocalDate.now(); // O LocalDate según uses
         this.estado = true;
-        this.autor = datos.autor();
-        this.curso = datos.curso();
     }
 
+    public void actualizarTopico(@Valid DatosActualizarTopico datos) {
+        this.fecha = LocalDate.now();
+
+        if(datos.titulo() != null) {
+            this.titulo = datos.titulo();
+        }
+        if(datos.mensaje() != null) {
+            this.mensaje = datos.mensaje();
+        }
+    }
+
+    public void desactivarTopico() {
+        this.estado = false;
+    }
 }

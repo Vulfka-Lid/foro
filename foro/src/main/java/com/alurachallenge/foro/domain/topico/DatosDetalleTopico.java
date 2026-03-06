@@ -1,7 +1,6 @@
 package com.alurachallenge.foro.domain.topico;
 
 import com.alurachallenge.foro.domain.usuario.Usuario;
-import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 
@@ -12,7 +11,18 @@ public record DatosDetalleTopico(
         String mensaje,
         LocalDate fecha,
         Boolean estado,
-        Usuario autor,
+        String autor,
         String curso
 ) {
+    public DatosDetalleTopico(Topico topico){
+        this
+        (topico.getId(),
+        topico.getTitulo(),
+        topico.getMensaje(),
+        topico.getFecha(),
+        topico.getEstado(),
+        topico.getAutor().getNombre(),
+        topico.getCurso()
+        );
+    }
 }

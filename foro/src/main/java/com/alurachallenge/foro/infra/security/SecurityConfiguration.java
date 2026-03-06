@@ -34,11 +34,6 @@ public class SecurityConfiguration {
                 .build();
     }
 
-    // CAMBIO CRUCIAL: Usar el parámetro de configuración para evitar llamar al método del Bean directamente
-    /*@Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }*/
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -46,7 +41,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() { // <--- Asegúrate de que devuelva el tipo específico si lo pides así en el Controller
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
