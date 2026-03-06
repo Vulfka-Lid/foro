@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
@@ -20,18 +23,18 @@ public class Usuario {
     private Long id;
     private Boolean activo;
     private String nombre;
-    private String correoElectronico;
+    private String email;
     private String contrasena;
 
-    @OneToMany
-    private Topico topico;
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Topico> topicos = new ArrayList<>();
 
-    public Usuario(DatosDetallesUsuario datos){
+    public Usuario(DatosRegistroUsuario datos, String passwordHasheada){
         this.id = null;
         this.activo = true;
         this.nombre = datos.nombre();
-        this.correoElectronico = datos.correoElectronico();
-        this.contrasena = datos.contrasena();
-        this.topico = datos.topico();
+        this.email = datos.email();
+        this.contrasena = passwordHasheada;
     }
+
 }

@@ -1,6 +1,7 @@
 -- 1. Crear la tabla de usuarios primero
 create table usuarios(
                          id bigint not null auto_increment,
+                         activo boolean not null default (1),
                          nombre varchar(100) not null,
                          email varchar(100) not null unique,
                          contrasena varchar(300) not null,
@@ -10,7 +11,7 @@ create table usuarios(
 create table topicos(
                         id bigint not null auto_increment,
                         titulo varchar(100) not null unique,
-                        mensaje varchar(500) not null,
+                        mensaje varchar(500) not null unique ,
                         fecha date not null,
                         estado boolean not null,
                         usuario_id bigint not null,
