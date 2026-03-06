@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/foro/src/main/resources/db/migration/V1__create-table-topico.sql" value="fc37c7bd-be2b-4003-ba39-b76622f78de1" />
+    <file url="file://$PROJECT_DIR$/foro/src/main/resources/db/migration/V2__create-table-usuario.sql" value="fc37c7bd-be2b-4003-ba39-b76622f78de1" />
+  </component>
+</project>
